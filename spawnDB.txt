@@ -79,3 +79,4 @@ INSERT INTO buyNsell (ticker, buy_or_sell, date, timestamp, price, num_of_shares
 
 
 
+
