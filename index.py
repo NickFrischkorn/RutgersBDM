@@ -30,12 +30,7 @@ print("Question 4: ", cursor.fetchall())
 # Find all tickers in ‘NYSE’ of the stocks whose closing price showed the
 # highest increase between ‘3/25/2020’ and ‘3/26/2020’ in ‘NYSE’ and
 # whose closing price was (in ‘NYSE’) strictly above $100 for the entire 2020
-q5 = cursor.execute("SELECT DISTINCT s.ticker FROM stock s WHERE s.ticker NOT IN "
-                    "(SELECT DISTINCT r.ticker FROM price p, price q, price r, price s WHERE p.date = '2020-3-25' "
-                    "&& q.date = '2020-3-26' && p.ticker = q.ticker && r.date = '2020-3-25' && s.date = '2020-3-26' &&  "
-                    "r.ticker = s.ticker &&  p.ticker != r.ticker && q.close-p.close>s.close-r.close) && s.ticker NOT IN "
-                    "(SELECT DISTINCT p.ticker FROM price p WHERE p.date BETWEEN '2019-12-31' AND '2021-01-01' && p.close<=100) "
-                    "&& s.ticker IN (SELECT DISTINCT s.ticker FROM stock s WHERE s.exchange = 'NYSE');")
+q5 = cursor.execute("SELECT DISTINCT s.ticker FROM stock s WHERE s.ticker NOT IN "(SELECT DISTINCT r.ticker FROM price p, price q, price r, price s WHERE p.date = '2020-3-25' && q.date = '2020-3-26' && p.ticker = q.ticker && r.date = '2020-3-25' && s.date = '2020-3-26' &&  r.ticker = s.ticker &&  p.ticker != r.ticker && q.close-p.close>s.close-r.close) && s.ticker NOT IN (SELECT DISTINCT p.ticker FROM price p WHERE p.date BETWEEN '2019-12-31' AND '2021-01-01' && p.close<=100)&& s.ticker IN (SELECT DISTINCT s.ticker FROM stock s WHERE s.exchange = 'NYSE');")               
 print("Question 5: ", cursor.fetchall())
 
 # In addition, to the above queries, also do in SQL the following one:
